@@ -1,0 +1,30 @@
+class Reverse {
+public:
+    stack<int> st;
+
+    stack<int> insertAtBottom(stack<int> st,int x){
+        if(st.empty()){
+            //insert the element now
+            st.push(x);
+            return st;
+        }
+
+        int t=st.top();
+        st.pop();
+        st=insertAtBottom(st,x);
+        st.push(t);
+        return st;
+    }
+
+    stack<int> reverse(stack<int> st){
+        if(st.empty())
+            return st;
+
+        int t=st.top();
+        st.pop();
+        st=reverse(st);
+        //insert t at the bottom of the stack
+        st=insertAtBottom(st,t);
+        return st;
+
+    }
